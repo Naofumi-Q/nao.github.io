@@ -1,6 +1,19 @@
 <!DOCTYPE html>
 <html>
+<head>
+    <title>pandasの使用例</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/themes/prism.min.css">
+</head>
 <body>
     <h1>pandasの使用例</h1>
+    <pre>
+        <p>特定のラベルを除外したデータセットにしたい場合</p>
+        <code class="language-python">
+            #クラス1を削除
+            df_wine = df_wine[df_wine["Class label"] != 1]
+        </code>
+    </pre>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/components/prism-python.min.js"></script>
 </body>
 </html>
