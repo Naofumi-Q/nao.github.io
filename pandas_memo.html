@@ -16,6 +16,17 @@
         <code class="language-python">
             df["c"] = df["a"] + 2.5 * def["b"]
         </code>
+        クラスラベルのエンコードと、データセットを訓練用8割・テスト用2割に分割する場合:
+        <code class="language-python">
+            from sklearn.preprocessing import LabelEncoder
+            from sklearn.model_selection import train_test_split
+            le = LabelEncoder()
+            y = le.fit_transform(y)
+            X_train, X_test, y_train, y_test = train_test_split(X, y, 
+                                                                test_size=0.2,
+                                                                random_state=1,
+                                                                stratify=y)
+        </code>
     </pre>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/prism.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/components/prism-python.min.js"></script>
