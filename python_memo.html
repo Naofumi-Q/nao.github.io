@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>汎用性が高い気がするpythonコードのメモ</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/themes/prism.min.css">
+</head>
+<body>
+    <h1>汎用性が高い気がするpythonコード</h1>
+    <pre>
+        関数f(x)を手っ取り早く描画したい場合:
+        <code class="language-python">
+            p = np.linspace(0.001, 0.999, 1000)
+            q = np.log((1 - p)/p)
+            plt.plot(p, q)
+            plt.show()
+        </code>
+        
+        </code>
+    </pre>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/components/prism-python.min.js"></script>
+</body>
+</html>
