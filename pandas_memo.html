@@ -37,6 +37,25 @@
         <code class="language-python">
             df["Language"] = df["Language"].map({"Japanese":0, "English":1, "Latin":2})
         </code>
+
+        データセットの各列にデータの欠損がないか確認したい場合:
+        <code class="language-python">
+            df.isnull().sum()
+        </code>
+        
+        欠損値を含むデータ行を削除したい場合:
+        <code class="language-python">
+            df = df.dropna(axis=0)
+        </code>
+
+        特徴量の頻度や特徴量間の相関を確認したい場合:
+        <code class="language-python">
+            import matplotlib.pyplot as plt
+            from mlxtend.plotting import scatterplotmatrix
+            catterplotmatrix(df.values, figsize=(12, 10), names=df.columns, alpha=0.5)
+            plt.tight_layout()
+            plt.show()
+        </code>
     </pre>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/prism.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/components/prism-python.min.js"></script>
