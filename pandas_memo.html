@@ -33,6 +33,10 @@
             df.shape
         </code>
         
+        文字列型の特徴量(例: 列名(column)が"Language"のデータが"Japanese"や"English"で格納されている)を整数に変換したい場合:
+        <code class="language-python">
+            df["Language"] = df["Language"].map({"Japanese":0, "English":1, "Latin":2})
+        </code>
     </pre>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/prism.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/components/prism-python.min.js"></script>
