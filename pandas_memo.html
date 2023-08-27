@@ -56,6 +56,16 @@
             plt.tight_layout()
             plt.show()
         </code>
+
+        ヒートマップで特徴量間の相関を確認したい場合:
+        <code class="language-python">
+            from mlxtend.plotting import heatmap
+            import numpy as np
+            cm = np.corrcoef(df.values.T) //デフォルトだと各行間の相関を計算するので、データを転置しておく
+            hm = heatmap(cm, row_names=df.columns, column_names=df.columns)
+            plt.tight_layout()
+            plt.show()
+        </code>
     </pre>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/prism.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/components/prism-python.min.js"></script>
