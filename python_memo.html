@@ -15,6 +15,28 @@
             plt.show()
         </code>
         
+        モデルによる学習が終わり、訓練データによる予測結果: y_train_predとテストデータによる予測結果: y_test_predとが得られ、
+        残差(予測値 - データ値)を確認したい場合:
+        <code class="language-python">
+            x_max = np.max([np.max(y_train_pred), np.max(y_test_pred)])
+            x_min = np.min([np.min(y_train_pred), np.min(y_test_pred)])
+
+            fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(7, 3), sharey=True)
+            
+            ax1.scatter(y_test_pred, y_test_pred - y_test,
+                        c="limegreen", marker="s", edgecolor="white", label="Test data")
+            ax2.scatter(y_train_pred, y_train_pred - y_train,
+                        c="steelblue", marker="o", edgecolor="white", label="Training data")
+
+            ax1.set_ylabel("Residual")
+
+            for ax in (ax1, ax2):
+                ax.set_xlabel("Predicted values")
+                ax.legend(loc="upper left")
+                ax.hlines(y=0, xmin=x_min-100, xmax=x_max+100, color="black", lw=2)
+
+            plt.tight_layout()
+            plt.show()
         </code>
     </pre>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/prism.min.js"></script>
