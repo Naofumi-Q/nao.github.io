@@ -19,6 +19,77 @@
         3. ドキュメントをベクトル化する(Embedding)
         4. ベクトル化したドキュメントを保管する(Vector Stores)
         5. ユーザ入力文字列と関係する文書を取得する(Retriever)
+
+        実際に動いた環境を記しておく(『ChatGPT/LangChainによるチャットシステム構築[実践]入門』を参照):
+        <code class="language-python">
+            import os
+            
+            os.environ["OPENAI_API_KEY"] = "OpenAIで発行したAPIキーをここに書く"
+
+            !pip install openai
+            !pip install cohere tiktoken
+            !pip install --upgrade llmx
+            !pip install --upgrade tensorflow-probability
+            !pip install typing-extensions==4.8.0
+            !pip install langchain openai
+
+            import openai
+            import langchain
+            
+            #1. ドキュメントを読み込む(Document Loaders)
+            !pip install GitPython
+
+            from langchain.document_loaders import GitLoader
+
+            def file_filter(file_path):
+            return file_path.endswith(".mdx")
+
+            loader = GitLoader(
+                clone_url="https://github.com/langchain-ai/langchain",
+                repo_path="./langchain",
+                branch="master",
+                file_filter=file_filter,
+            )
+
+            raw_docs = loader.load()
+            
+            #2. ドキュメントを目的に応じて変換する(Document Transformers)
+            from langchain.text_splitter import CharacterTextSplitter
+
+            text_splitter = CharacterTextSplitter(chunk_size=1000, chunk_overlap=0)
+            
+            docs = text_splitter.split_documents(raw_docs)
+
+            #3. ドキュメントをベクトル化する(Embedding)
+            from langchain.embeddings.openai import OpenAIEmbeddings
+            
+            embeddings = OpenAIEmbeddings()
+
+            !pip install tiktoken
+
+            #4. ベクトル化したドキュメントを保管する(Vector Stores)
+            !pip install lida
+            !pip install kaleido python-multipart
+            !pip install chromadb
+
+            from langchain.vectorstores import Chroma
+
+            db = Chroma.from_documents(docs, embeddings)
+
+            #5. ユーザ入力文字列と関係する文書を取得する(Retriever)
+            retriever = db.as_retriever()
+
+            query = "ここに問い合わせ文を書く"
+
+            context_docs = retriever.get_relevant_documents(query)
+            print(f"len = {len(context_docs)}")
+
+            first_doc = context_docs[0]
+            print(f"metadata = {first_doc.metadata}")
+            print(first_doc.page_content)
+
+
+        </code>
         
     </pre>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/prism.min.js"></script>
